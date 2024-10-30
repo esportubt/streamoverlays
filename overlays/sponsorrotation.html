@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      #slideshow {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      #slideshow div {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        transition: opacity 0.5s;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="slideshow">
+      <div></div>
+      <div></div>
+    </div>
+    <script>
+      let images = ["../assets/cherry.png", "../assets/emergo.png"];
+
+      let currentImageIndex = 0;
+      let slideshowDivs = document.querySelectorAll("#slideshow div");
+      let currentImageDiv = slideshowDivs[0];
+      let nextImageDiv = slideshowDivs[1];
+
+      function updateSlideshow() {
+        nextImageDiv.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+        nextImageDiv.style.opacity = "1";
+        currentImageDiv.style.opacity = "0";
+
+        setTimeout(() => {
+          let temp = currentImageDiv;
+          currentImageDiv = nextImageDiv;
+          nextImageDiv = temp;
+          nextImageDiv.style.opacity = "0";
+
+          currentImageIndex = (currentImageIndex + 1) % images.length;
+        }, 500);
+      }
+
+      setInterval(updateSlideshow, 20000);
+      window.onload = updateSlideshow;
+    </script>
+  </body>
+</html>

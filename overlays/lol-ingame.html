@@ -1,0 +1,139 @@
+<body>
+  <img id="BgImg" src="../assets/lol-ingame.png" />
+  <span id="TeamNameLinks"></span>
+  <span id="TeamNameRechts"></span>
+  <span id="TeamScoreLinks"></span>
+  <span id="TeamScoreRechts"></span>
+
+  <!-- JAVASCRIPT STUFF -->
+  <script src="../Updater.js"></script>
+  <script src="../regex-operation.js"></script>
+  <script>
+    const settings = {
+      string: {
+        B5: "TeamNameLinks",
+        B8: "TeamNameRechts",
+        B6: "TeamScoreLinks",
+        B9: "TeamScoreRechts",
+      },
+    };
+
+    const spreadsheetID = "1C6cS1xjd-KqE4soKoPOLNBboYyQytDzRTpx0RulQehQ";
+    const worksheetName = "Output";
+    const apiKey = "AIzaSyASPnMqrvhMv1l3tLdw38lftseaMGqH730";
+    const updateInterval = 2000;
+
+    const u = new GraphicsUpdater(
+      settings,
+      spreadsheetID,
+      worksheetName,
+      apiKey,
+      updateInterval,
+      false
+    );
+    u.addOperation("regex", regexOperation);
+    u.startUpdating();
+  </script>
+</body>
+
+<style>
+  @font-face {
+    font-family: "Oswald";
+    font-style: normal;
+    color: white;
+    src: url("../assets/Oswald-VariableFont_wght.ttf");
+  }
+
+  @font-face {
+    font-family: "Fira";
+    font-style: normal;
+    color: white;
+    src: url("../assets/FiraSans-Regular.ttf");
+  }
+
+  * {
+    box-sizing: border-box;
+    /* outline: solid coral; */
+  }
+
+  body {
+    font-family: "Oswald";
+    background-color: rgba(0, 0, 0, 0);
+    margin: 0px auto;
+    overflow: hidden;
+  }
+
+  .img {
+    position: absolute;
+    width: 1920px;
+    height: 1080px;
+  }
+
+  #TeamNameLinks {
+    position: absolute;
+    font-size: 25px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #e9e0cd;
+    top: 1px;
+    left: 290px;
+    width: 170px;
+    height: 1.5em;
+    text-align: center;
+    vertical-align: middle;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  #TeamNameRechts {
+    position: absolute;
+    font-size: 25px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #e9e0cd;
+    top: 1px;
+    right: 500px;
+    width: 170px;
+    height: 1.5em;
+    text-align: center;
+    vertical-align: middle;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  #TeamScoreRechts {
+    position: absolute;
+    font-size: 25px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #e9e0cd;
+    top: 1px;
+    right: 450px;
+    width: 50px;
+    height: 1.5em;
+    text-align: center;
+    vertical-align: middle;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  #TeamScoreLinks {
+    position: absolute;
+    font-size: 25px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #e9e0cd;
+    top: 1px;
+    left: 237px;
+    width: 50px;
+    height: 1.5em;
+    text-align: center;
+    vertical-align: middle;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+</style>
